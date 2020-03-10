@@ -24,6 +24,14 @@ num = input("Podaj liczbę, im dłuższa tym lepsza: ")
 print("Pierwsza cyfra tej liczby to: ", num[0])
 print("Ostatnia cyfra tej liczby to: ", num [-1])
 
+# Napisz program, który rysuje prostokąt o zadanych rozmiarach (wysokość i szerokość) za pomocą znaków
+
+upndown = int(input("Podaj szerokość: "))
+sides = int(input("Podaj wysokość: "))
+body = ("|" + (" " * upndown) + "|")
+print("+" + "-" * upndown + "+\n" + (body + "\n") *sides,"\n" + "+" + "-" * upndown + "+")
+
+
 # Napisz do przeliczania liczby zapisanej w formacie binarnym na system dziesiętny.
 # Załóż że wpisywane jest zawsze tylko 6 znaków 0/1
 binar = input("Podaj liczbę w formacie binarnym (6 znaków): ")
