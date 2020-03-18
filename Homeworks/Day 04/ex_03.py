@@ -2,8 +2,8 @@
 
 def coins_change():
     money = float(input("Podaj kwotę, którą chcesz rozmienić: "))
-    div_list = (5, 2, 1, 0.5, 0.2, 0.1)
-    while money > 0:
+    div_list = (5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01)
+    while money >= 0.01:
         for i in div_list:
             num = int(money / i)
             print(f"{num} monet {i} zł.")
