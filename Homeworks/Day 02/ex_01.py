@@ -1,4 +1,4 @@
-#pisz program do przeliczania stopni Celsjusza na Fahrenheita (wyświetlając wzór i kolejne obliczenia)
+#Napisz program do przeliczania stopni Celsjusza na Fahrenheita (wyświetlając wzór i kolejne obliczenia)
 
 print("""Aby przeliczyć stopnie Celsjusza na stopnie Fahrenheita należy użyć wzoru:
 T(far) = 32 + (9 / 5 * T(cel).
