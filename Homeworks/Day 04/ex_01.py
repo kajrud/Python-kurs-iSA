@@ -131,3 +131,4 @@ while True:
         break
     except ValueError:
         print("Nieprawidłowe dane, zacznij jeszcze raz.")
+
