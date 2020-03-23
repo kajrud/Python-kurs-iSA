@@ -1,5 +1,5 @@
 import Excercises.Moduły.games as games
-import random
+from random import randint
 print("""
 Witaj w Multitool Python Program by iSA - wersja beta ;)
 Wybierz program który cię interesuje:
