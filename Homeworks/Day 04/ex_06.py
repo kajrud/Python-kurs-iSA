@@ -1,4 +1,4 @@
-import Excercises.Moduły.games as games
+import Excercises.Moduly.games as games
 from random import randint
 print("""
 Witaj w Multitool Python Program by iSA - wersja beta ;)
