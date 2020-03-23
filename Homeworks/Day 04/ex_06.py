@@ -56,8 +56,9 @@ while True:
         if num in num_list:
             multitool()
         elif num == "R" :
-            num = random.randint(1, 15)
+            num = randint(1, 15)
             num = str(num)
+            print(f"Wylosowano numer {num}")
             multitool()
         elif num == "X":
             break
