@@ -1,6 +1,6 @@
 import Excercises.Moduly.games as games
 from random import randint
-print("""
+menu = ("""
 Witaj w Multitool Python Program by iSA - wersja beta ;)
 Wybierz program który cię interesuje:
 1. Przeliczanie temperatury C -> F
@@ -49,10 +49,12 @@ def multitool():
         games.pyramid_draw()
     elif num == "14":
         games.dog_game()
+
 num_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
+print(menu)
 while True:
     try:
-        num = input("Wprowadź numer: ")
+        num = input("Wprowadź numer (lub wpisz \"M\", aby wyświetlić menu): ")
         if num in num_list:
             multitool()
         elif num == "R" :
@@ -62,5 +64,7 @@ while True:
             multitool()
         elif num == "X":
             break
+        elif num == "M":
+            print(menu)
     except:
         print("Coś poszło nie tak, spróbuj jeszcze raz.")
