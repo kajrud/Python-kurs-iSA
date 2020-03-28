@@ -10,3 +10,31 @@
 #    +------------+------------+------------+
 #    | row 2 col1 | row 2 col2 | row 2 col3 |
 #    +------------+------------+------------+
+
+import openpyxl
+# excel = openpyxl.Workbook()
+# excel.save("tabela_danych.xlsx")
+
+nazwa_pliku = "tabela_danych.xlsx"
+excel = openpyxl.load_workbook(nazwa_pliku)
+arkusz = excel.active
+for row in arkusz.iter_rows(min_row=1, max_col=4, max_row=4, values_only=True):
+    num = len(row)
+    upndown = "+" + "------------+" * num
+    print(upndown)
+    counter = 0
+    for column in row:
+        if len(row[counter]) <= 7:
+            print("|{:11.8s}".format(row[counter]) + " ", end="")
+            counter += 1
+        else:
+            print("|{:9.7s}".format(row[counter]) + "...", end="")
+            counter += 1
+    print("|")
+print(upndown)
+
+
+
+
+
+
