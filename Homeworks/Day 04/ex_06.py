@@ -1,70 +1,49 @@
 import Excercises.Moduly.games as games
 from random import randint
-menu = ("""
+
+def menu (funkcje):
+    print ("""
 Witaj w Multitool Python Program by iSA - wersja beta ;)
 Wybierz program który cię interesuje:
-1. Przeliczanie temperatury C -> F
-2. Przeliczanie temperatury F -> C
-3. Obliczanie pola koła
-4. Podawanie pierwszej i ostatniej cyfry
-5. Rysowanie prostokąta
-6. Zamiana liczby binarnej na dziesiętną
-7. Sprawdzenie czy liczba jest parzysta
-8. Sprawdzenie czy liczba jest podzielna przez 3, 5 lub 7
-9. Sprawdzenie czy liczba jest podzielna przez 3, 5 i 7
-10. Sprawdzenie czy rok jest przestępny
-11. Rysowanie tabeli
-12. Rozmienianie kwoty na monety
-13. Rysowanie piramidy
-14. Obliczanie wieku psa
-R. Zaskocz mnie!
-X. Wyjście z programu""")
+""")
+    for index, funkcja in funkcje.items():
+        print(f"Wybór: {index} - {funkcja['nazwa']}")
 
-def multitool():
-    if num == "1":
-        games.cel_to_fahr()
-    elif num == "2":
-        games.fahr_to_cel()
-    elif num == "3":
-        games.disk_area()
-    elif num == "4":
-        games.first_and_last()
-    elif num == "5":
-        games.draw_rectangle()
-    elif num == "6":
-        games.binary_to_decimal()
-    elif num == "7":
-        games.is_even()
-    elif num == "8":
-        games.is_divisible_or()
-    elif num == "9":
-        games.is_divisible_and()
-    elif num == "10":
-        games.leap_year()
-    elif num == "11":
-        games.table_game()
-    elif num == "12":
-        games.coins_game()
-    elif num == "13":
-        games.pyramid_draw()
-    elif num == "14":
-        games.dog_game()
+def rand():
+    num = randint(1, 15)
+    num = str(num)
+    print(f"Wylosowano numer {num}")
+    funkcje[num]()
 
-num_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
-print(menu)
+def leave():
+    print("Do zobaczenia!")
+    exit()
+
+funkcje = {"1" : {'nazwa': "Przeliczanie temperatury C -> F", 'call' : games.cel_to_fahr},
+           "2" : {'nazwa': "Przeliczanie temperatury F -> C", 'call' : games.fahr_to_cel},
+           "3" : {'nazwa': "Obliczanie pola koła", 'call' : games.disk_area},
+           "4" : {'nazwa': "Podawanie pierwszej i ostatniej cyfry", 'call' : games.first_and_last},
+           "5" : {'nazwa': "Rysowanie prostokąta", 'call' : games.draw_rectangle},
+           "6" : {'nazwa': "Zamiana liczby binarnej na dziesiętną", 'call' : games.binary_to_decimal},
+           "7" : {'nazwa': "Sprawdzenie czy liczba jest parzysta", 'call' : games.is_even},
+           "8" : {'nazwa': "Sprawdzenie czy liczba jest podzielna przez 3, 5 lub 7", 'call' : games.is_divisible_or},
+           "9" : {'nazwa': "Sprawdzenie czy liczba jest podzielna przez 3, 5 i 7", 'call' : games.is_divisible_and},
+           "10" : {'nazwa': "Sprawdzenie czy rok jest przestępny", 'call' : games.leap_year},
+           "11" : {'nazwa': "Rysowanie tabeli", 'call' : games.table_game},
+           "12" : {'nazwa': "Rozmienianie kwoty na monety", 'call' : games.coins_game},
+           "13" : {'nazwa': "Rysowanie piramidy", 'call' : games.pyramid_draw},
+           "14" : {'nazwa': "Obliczanie wieku psa", 'call' : games.dog_game},
+           "R" : {'nazwa': "Zaskocz mnie!", 'call' : rand},
+           "X" : {'nazwa': "Wyjście z programu", 'call' : leave}
+        }
+
+menu(funkcje)
 while True:
     try:
         num = input("Wprowadź numer (lub wpisz \"M\", aby wyświetlić menu): ")
-        if num in num_list:
-            multitool()
-        elif num == "R" :
-            num = randint(1, 15)
-            num = str(num)
-            print(f"Wylosowano numer {num}")
-            multitool()
-        elif num == "X":
-            break
+        if num in funkcje.items():
+            funkcje[num]["call"]()
         elif num == "M":
-            print(menu)
+            menu(funkcje)
     except:
         print("Coś poszło nie tak, spróbuj jeszcze raz.")
