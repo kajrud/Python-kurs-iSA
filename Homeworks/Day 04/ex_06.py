@@ -35,6 +35,7 @@ funkcje = {"1" : {'nazwa': "Przeliczanie temperatury C -> F", 'call' : games.cel
            "14" : {'nazwa': "Obliczanie wieku psa", 'call' : games.dog_game},
            "R" : {'nazwa': "Zaskocz mnie!", 'call' : rand},
            "X" : {'nazwa': "Wyjście z programu", 'call' : leave}
+           "S" : {'nazwa': "Statystyka", 'call' : counter}
         }
 
 menu(funkcje)

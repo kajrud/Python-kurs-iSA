@@ -213,3 +213,6 @@ def licznik():
         with open('licznik.txt.','w') as licznik:
             licznik.write("1")
             print("Plik został otwarty po raz pierwszy!")
+
+def counter():
+    pass
