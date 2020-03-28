@@ -196,3 +196,20 @@ def dog_game():
         except ValueError:
             print("Nieprawidłowe dane, zacznij jeszcze raz.")
 
+def licznik():
+    try:
+        with open('licznik.txt', 'r+') as licznik:
+            current = licznik.readline()
+            try:
+                current = int(current)
+                current += 1
+            except:
+                current = 1
+            current = str(current)
+            licznik.seek(0)
+            licznik.write(current)
+            print("Plik został otwarty po raz " + current)
+    except FileNotFoundError:
+        with open('licznik.txt.','w') as licznik:
+            licznik.write("1")
+            print("Plik został otwarty po raz pierwszy!")
