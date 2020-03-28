@@ -1,25 +1,27 @@
 import Excercises.Moduly.games as games
 from random import randint
 
-def menu (funkcje):
-    print ("""
-Witaj w Multitool Python Program by iSA - wersja beta ;)
-Wybierz program który cię interesuje:
-""")
-    for index, funkcja in funkcje.items():
-        print(f"Wybór: {index} - {funkcja['nazwa']}")
-
 def rand():
-    num = randint(1, 15)
-    num = str(num)
-    print(f"Wylosowano numer {num}")
-    funkcje[num]()
+    wybor = randint(1, 15)
+    wybor = str(wybor)
+    print(f"Wylosowano numer {wybor}")
+    programy[wybor]['call']()
 
 def leave():
     print("Do zobaczenia!")
     exit()
 
-funkcje = {"1" : {'nazwa': "Przeliczanie temperatury C -> F", 'call' : games.cel_to_fahr},
+
+def menu(programy):
+    print('MultiTOOL\nMenu:')
+
+    for key, program in programy.items():
+        print(f'{key} - {program["nazwa"]}')
+
+    return input('Który program uruchomić? ').upper()
+
+programy = {
+           "1" : {'nazwa': "Przeliczanie temperatury C -> F", 'call' : games.cel_to_fahr},
            "2" : {'nazwa': "Przeliczanie temperatury F -> C", 'call' : games.fahr_to_cel},
            "3" : {'nazwa': "Obliczanie pola koła", 'call' : games.disk_area},
            "4" : {'nazwa': "Podawanie pierwszej i ostatniej cyfry", 'call' : games.first_and_last},
@@ -34,17 +36,17 @@ funkcje = {"1" : {'nazwa': "Przeliczanie temperatury C -> F", 'call' : games.cel
            "13" : {'nazwa': "Rysowanie piramidy", 'call' : games.pyramid_draw},
            "14" : {'nazwa': "Obliczanie wieku psa", 'call' : games.dog_game},
            "R" : {'nazwa': "Zaskocz mnie!", 'call' : rand},
-           "X" : {'nazwa': "Wyjście z programu", 'call' : leave}
-           "S" : {'nazwa': "Statystyka", 'call' : counter}
-        }
+           "X" : {'nazwa': "Wyjście z programu", 'call' : leave},
+           "S" : {'nazwa': "Statystyka", 'call' : games.counter}
+}
+wybor = None
 
-menu(funkcje)
-while True:
+while wybor != 'X':
+    wybor = menu(programy)
+
     try:
-        num = input("Wprowadź numer (lub wpisz \"M\", aby wyświetlić menu): ")
-        if num in funkcje.items():
-            funkcje[num]["call"]()
-        elif num == "M":
-            menu(funkcje)
-    except:
-        print("Coś poszło nie tak, spróbuj jeszcze raz.")
+        print('=' * 20)
+        programy[wybor]['call']()
+        print('=' * 20)
+    except KeyError:
+        print('Taki program nie isnieje')
