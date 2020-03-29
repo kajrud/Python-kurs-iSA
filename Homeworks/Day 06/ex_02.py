@@ -1,15 +1,5 @@
 # Stwórz program który przyjmie w parametrze ścieżkę do dowolnego pliku (CSV lub Excel - jaki wolicie), który będzie zawierał dane tabelaryczne.
 #    W pliku pierwszy wiersz będzie zawierał nazwy kolumn a pozostałe wiersze dane.
-#    Ilość kolum i wierszy może być dowolna. Program ma narysować tabelę z danymi, analogicznie do wcześniejszego zadania na rysowanie tabeli.
-#    Pamiętajmy by wydzielać części reużywalne do oddzielnych funkcji/modułów (np.: odczyt danych, przygotowanie danych, rysowanie tabeli).
-#    Przykład:
-#    +------------+------------+------------+
-#    | klucz1     | klucz 2    | klucz 3    |
-#    +------------+------------+------------+
-#    | row 1 col1 | row 1 col2 | row 1 col3 |
-#    +------------+------------+------------+
-#    | row 2 col1 | row 2 col2 | row 2 col3 |
-#    +------------+------------+------------+
 
 import openpyxl
 # excel = openpyxl.Workbook()
@@ -18,7 +8,30 @@ import openpyxl
 nazwa_pliku = "tabela_danych.xlsx"
 excel = openpyxl.load_workbook(nazwa_pliku)
 arkusz = excel.active
-for row in arkusz.iter_rows(min_row=1, max_col=5, max_row=4, values_only=True):
+row = 1
+column = 1
+column_counter = 0
+while True:
+    cell = arkusz.cell(row, column)
+    if cell.value != None:
+        column_counter += 1
+        column +=1
+    else:
+        break
+print(column_counter)
+
+row_counter = 0
+row = 1
+column = 1
+while True:
+    cell = arkusz.cell(row, column)
+    if cell.value != None:
+        row_counter += 1
+        row +=1
+    else:
+        break
+print(row_counter)
+for row in arkusz.iter_rows(min_row=1, max_col=column_counter, max_row=row_counter, values_only=True):
     num = len(row)
     upndown = "+" + "------------+" * num
     print(upndown)
@@ -34,9 +47,3 @@ for row in arkusz.iter_rows(min_row=1, max_col=5, max_row=4, values_only=True):
             counter += 1
     print("|")
 print(upndown)
-
-
-
-
-
-
