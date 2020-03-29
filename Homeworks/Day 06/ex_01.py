@@ -13,11 +13,6 @@ with open("example.txt", "r") as plik:
     stat.is_lower(plik)
     stat.count_num(plik)
     stat.count_anything(plik)
-#
-# with open("example.txt", "r") as plik:
-#     all_lines = len(plik.readlines())
-#     print(f"W pliku znajduje się {all_lines} linijek.")
-#     all_characters = plik.read()
-#     print(f"W pliku znajduje się {len(all_characters)} znaków.")
+
 
 

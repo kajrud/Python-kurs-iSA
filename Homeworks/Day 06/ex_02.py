@@ -8,6 +8,8 @@ import openpyxl
 nazwa_pliku = "tabela_danych.xlsx"
 excel = openpyxl.load_workbook(nazwa_pliku)
 arkusz = excel.active
+
+
 row = 1
 column = 1
 column_counter = 0
