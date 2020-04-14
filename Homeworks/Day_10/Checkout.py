@@ -31,11 +31,12 @@ class Item():
 
 
 class Book(Item):
+    vat = 0.05
     def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages):
         super().__init__(id, name, price, amount, created_at, last_buy_at)
         self.author = author
         self.number_of_pages = number_of_pages
-        self.vat = 0.05
+
 
 
 class Ebook(Book):
