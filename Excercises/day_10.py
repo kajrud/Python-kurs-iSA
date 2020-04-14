@@ -95,7 +95,7 @@ print(isinstance(book, Ksiazka))
 print(issubclass(Bokser, Pies))
 
 
-dziedziczenie metod
+#  dziedziczenie metod
 class Zwierze():
     def hej(self):
         print("WAT")

@@ -21,26 +21,24 @@ class Cart():
         return self.gross
 
 class Item():
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, rating):
+    def __init__(self, id, name, price, amount, created_at, last_buy_at):
         self.id = id
         self.name = name
         self.price = price
         self.amount = amount
         self.created_at = created_at
         self.last_buy_at = last_buy_at
-        self.rating = rating
 
 
 class Book(Item):
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages):
-        super().__init__(id, name, price, amount, created_at, last_buy_at, rating)
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages):
+        super().__init__(id, name, price, amount, created_at, last_buy_at)
         self.author = author
         self.number_of_pages = number_of_pages
         self.vat = 0.05
 
 
 class Ebook(Book):
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages, format):
-        super().__init__(id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages)
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, format):
+        super().__init__(id, name, price, amount, created_at, last_buy_at, author, number_of_pages)
         self.format = format
-
