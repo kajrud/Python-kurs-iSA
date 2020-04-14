@@ -32,7 +32,7 @@ class Item():
 
 
 class Book(Item):
-    def __init__(self, self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages):
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages):
         super().__init__(id, name, price, amount, created_at, last_buy_at, rating)
         self.author = author
         self.number_of_pages = number_of_pages
@@ -40,6 +40,7 @@ class Book(Item):
 
 
 class Ebook(Book):
-    def __init__(self, self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages, format):
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages, format):
         super().__init__(id, name, price, amount, created_at, last_buy_at, rating, author, number_of_pages)
         self.format = format
+
