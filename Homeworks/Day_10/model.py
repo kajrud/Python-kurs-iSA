@@ -11,8 +11,8 @@ class Cart():
     def dodaj(self, element):
         self.elements.append(element)
         self.elements_number += 1
-        self.net += element.net_price
-        self.gross += element.gross_price()
+        # self.net += element.net_price
+        # self.gross += element.gross_price()
 
     def __len__(self):
         return len(self.elements)
