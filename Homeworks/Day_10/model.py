@@ -37,6 +37,9 @@ class Book(Item):
         self.author = author
         self.number_of_pages = number_of_pages
 
+    def summary(self):
+        print(self.id,"\n", self.name,"\n", self.author,"\n", self.number_of_pages)
+
 
 
 class Ebook(Book):

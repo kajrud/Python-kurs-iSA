@@ -56,6 +56,7 @@ excel = openpyxl.load_workbook(nazwa_pliku)
 print(excel.sheetnames)
 arkusz = excel.active
 
+
 row = 1
 column = 1
 max = int(input("Ile chcesz mnożyć? "))
