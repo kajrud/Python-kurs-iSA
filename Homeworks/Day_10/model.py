@@ -58,7 +58,7 @@ class Ebook(Book):
 
 
 class Db():
-    def __init__(self, file):
+    def __init__(self):
         """
         for example:
 
@@ -66,14 +66,33 @@ class Db():
         create book/ebook objects
         add to items as a dict of objects {id:item, id:item}
         """
-        pass
+        self.database = {}
+
+    def create_db(self, csv_file):
+        import csv
+        with open(csv_file, "r+", encoding="utf-8", newline="") as file:
+            reader = csv.DictReader(file)
+            counter = 1
+            for row in reader:
+                if row["Typ"] == "Book":
+                    object = Book(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
+                                        created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
+                                        author=row["Autor"], number_of_pages=row["Ilość stron"])
+                    self.database.update({counter: object})
+                    counter += 1
+                elif row["Typ"] == "Ebook":
+                    object = Ebook(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
+                                         created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
+                                         author=row["Autor"], number_of_pages=row["Ilość stron"], format=row["Format"])
+                    self.database.update({counter: object})
+                    counter += 1
 
     def addItem(self, object):
         """
         Function to add item in DB
         :param Book/Ebook object - object of book/ebook?
         """
-        pass
+        self.database.update(object)
 
     def getItems(self):
         """
