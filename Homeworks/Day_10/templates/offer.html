@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our offer</title>
+    <title>
+        Our offer
+    </title>
+    <style>
+        p{
+            color:black;
+            font-style: italic;
+            font-size: 45px;
+            font-family: Calibri;
+        }
+    body {background-color: beige;}
+    img{
+        border: 2px black solid
+        padding: 20px
+        }
+    </style>
 </head>
 <body>
+{% block page_content %}
+<center>
 
+<p>Choose wisely<br/>
+    <br/>
+    Click the picture below to add to cart<br/>
+    <br/><br/>
+    <a href="/potop">
+         <img  src="https://ecsmedia.pl/c/potop-b-iext38864542.jpg"
+         width=200">
+      </a>
+    <a href="/krzyzacy">
+         <img  src="https://ecsmedia.pl/c/krzyzacy-w-iext49960097.jpg"
+         width=200">
+      </a>
+    <a href="/lotr">
+         <img  src="https://image.ceneostatic.pl/data/products/18726692/i-wladca-pierscieni-tw.jpg"
+         width=200">
+      </a>
+
+
+</p>
+    </center>
+{% endblock %}
 </body>
 </html>

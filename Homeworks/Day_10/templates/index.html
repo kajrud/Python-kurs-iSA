@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello!</title>
+    <title>
+        {% block page_title %}
+        Hello!
+        {% endblock %}
+    </title>
     <style>
         p{
             color:black;
@@ -14,13 +18,20 @@
     </style>
 </head>
 <body>
+{% block page_content %}
 <center>
+
 <p>Welcome to our bookstore!<br/>
     <br/>
-    Amazing stuff coming soon!<br/>
+    Click the picture below to enter<br/>
     <br/>
-<img src="https://www.lifeofpix.com/wp-content/uploads/2019/01/bernicebook-1600x1067.jpg" width="600">
+    <a href="/our-books">
+         <img  src="https://www.lifeofpix.com/wp-content/uploads/2019/01/bernicebook-1600x1067.jpg"
+         width=600">
+      </a>
+
 </p>
     </center>
+{% endblock %}
 </body>
 </html>

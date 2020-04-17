@@ -92,28 +92,25 @@ class Db():
         """
         pass
 
-    class Cart():
-        """
+class Cart():
 
-        """
+    def __init__(self):
+        self.elements = []
+        self.elements_number = 0
+        self.net = 0
+        self.gross = 0
 
-        def __init__(self):
-            self.elements = []
-            self.elements_number = 0
-            self.net = 0
-            self.gross = 0
-
-        def dodaj(self, element):
-            self.elements.append(element)
-            self.elements_number += 1
+    def dodaj(self, element):
+        self.elements.append(element)
+        self.elements_number += 1
             # self.net += element.net_price
             # self.gross += element.gross_price()
 
-        def __len__(self):
-            return len(self.elements)
+    def __len__(self):
+        return len(self.elements)
 
-        def net_worth(self):
-            return self.net
+    def net_worth(self):
+        return self.net
 
-        def gross_worth(self):
-            return self.gross
+    def gross_worth(self):
+        return self.gross
