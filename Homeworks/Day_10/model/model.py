@@ -1,28 +1,4 @@
-class Cart():
-    """
-
-    """
-    def __init__(self):
-        self.elements = []
-        self.elements_number = 0
-        self.net = 0
-        self.gross = 0
-
-    def dodaj(self, element):
-        self.elements.append(element)
-        self.elements_number += 1
-        # self.net += element.net_price
-        # self.gross += element.gross_price()
-
-    def __len__(self):
-        return len(self.elements)
-
-    def net_worth(self):
-        return self.net
-
-    def gross_worth(self):
-        return self.gross
-
+import csv
 class Item():
     """
 
@@ -58,7 +34,7 @@ class Ebook(Book):
 
 
 class Db():
-    def __init__(self):
+    def __init__(self, csv_file):
         """
         for example:
 
@@ -68,8 +44,6 @@ class Db():
         """
         self.database = {}
 
-    def create_db(self, csv_file):
-        import csv
         with open(csv_file, "r+", encoding="utf-8", newline="") as file:
             reader = csv.DictReader(file)
             counter = 1
@@ -92,7 +66,8 @@ class Db():
         Function to add item in DB
         :param Book/Ebook object - object of book/ebook?
         """
-        self.database.update(object)
+        counter = len(self.database) + 1
+        self.database.update({counter: object})
 
     def getItems(self):
         """
@@ -100,7 +75,7 @@ class Db():
         """
         pass
 
-    def removeItem(self):
+    def removeItem(self, object):
         """
         Function to get remove item from DB
         :param int id - id of book?
@@ -113,3 +88,29 @@ class Db():
         :param Book/Ebook object - object of book/ebook?
         """
         pass
+
+    class Cart():
+        """
+
+        """
+
+        def __init__(self):
+            self.elements = []
+            self.elements_number = 0
+            self.net = 0
+            self.gross = 0
+
+        def dodaj(self, element):
+            self.elements.append(element)
+            self.elements_number += 1
+            # self.net += element.net_price
+            # self.gross += element.gross_price()
+
+        def __len__(self):
+            return len(self.elements)
+
+        def net_worth(self):
+            return self.net
+
+        def gross_worth(self):
+            return self.gross
