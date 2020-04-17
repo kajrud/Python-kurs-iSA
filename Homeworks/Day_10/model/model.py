@@ -61,13 +61,16 @@ class Db():
                     self.database.update({counter: object})
                     counter += 1
 
-    def addItem(self, object):
+    def addItem(self, object, file):
         """
         Function to add item in DB
         :param Book/Ebook object - object of book/ebook?
         """
         counter = len(self.database) + 1
         self.database.update({counter: object})
+        with open (file, "a+", newline="") as csv_file:
+            writer = csv.writer(csv_file, delimiter=',')
+            writer.writerow(object)
 
     def getItems(self):
         """
