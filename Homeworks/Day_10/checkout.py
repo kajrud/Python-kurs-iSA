@@ -8,5 +8,4 @@ lotr = baza.database[3]
 cart = store.Cart()
 print(cart.elements)
 
-
-
+baza.getItems()

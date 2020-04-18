@@ -21,6 +21,7 @@ class Book(Item):
         super().__init__(id, name, price, amount, created_at, last_buy_at)
         self.author = author
         self.number_of_pages = number_of_pages
+        self.net_price = price - price * Book.vat
 
     def summary(self):
         print(self.id,"\n", self.name,"\n", self.author,"\n", self.number_of_pages)
@@ -31,13 +32,12 @@ class Ebook(Book):
     def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, format):
         super().__init__(id, name, price, amount, created_at, last_buy_at, author, number_of_pages)
         self.format = format
+        self.net_price = price - price * Book.vat
 
 
 class Db():
     def __init__(self, csv_file):
         """
-        for example:
-
         read from file
         create book/ebook objects
         add to items as a dict of objects {id:item, id:item}
@@ -103,11 +103,14 @@ class Cart():
     def dodaj(self, element):
         self.elements.append(element)
         self.elements_number += 1
-            # self.net += element.net_price
-            # self.gross += element.gross_price()
+        # self.net += element.net_price
+        # self.gross += element.price()
 
     def __len__(self):
         return len(self.elements)
+
+    def cart_view(self):
+        return self.elements
 
     def net_worth(self):
         return self.net
