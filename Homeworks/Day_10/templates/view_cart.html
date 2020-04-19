@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block page_title %}Your cart{% endblock %}
+
+{% block page_content %}
+<center>
+    <p class="important">
+        <ul>
+    {% for element in cart %}
+        {{element}}<br/>
+    {% endfor %}
+</ul>
+    </p>
+    
+</center>
+{% endblock %}

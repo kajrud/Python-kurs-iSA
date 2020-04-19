@@ -19,15 +19,15 @@ def main():
 def our_books():
     return flask.render_template("offer.html")
 
-@app.route("/<element>")
+@app.route("/<element>", methods = ["GET", "POST"])
 def add_to_cart(element):
     cart = store.Cart()
     cart.dodaj(element)
-    print(cart.elements)
     return flask.render_template("add_to_cart.html")
 
 @app.route("/cart")
 def view_cart():
     return cart.cart_view()
+    # return flask.render_template("view_cart.html")
 
 app.run()

@@ -110,6 +110,7 @@ class Cart():
         return len(self.elements)
 
     def cart_view(self):
+        self.elements = dict(self.elements)
         return self.elements
 
     def net_worth(self):
