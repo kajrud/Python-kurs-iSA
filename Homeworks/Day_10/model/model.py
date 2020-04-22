@@ -3,37 +3,58 @@ class Item():
     """
 
     """
-    def __init__(self, id, name, price, amount, created_at, last_buy_at):
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, pic):
         self.id = id
         self.name = name
         self.price = price
         self.amount = amount
         self.created_at = created_at
         self.last_buy_at = last_buy_at
+        self.pic = pic
 
+    def __str__(self):
+        template = """
+        Id: {0}
+        Name: {1}
+        Price: {2}
+        """
+        return template.format(self.id, self.name, self.price)
 
 class Book(Item):
     """
 
     """
     vat = 0.05
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages):
-        super().__init__(id, name, price, amount, created_at, last_buy_at)
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, pic):
+        super().__init__(id, name, price, amount, created_at, last_buy_at, pic)
         self.author = author
         self.number_of_pages = number_of_pages
         self.net_price = price - price * Book.vat
 
-    def summary(self):
-        print(self.id,"\n", self.name,"\n", self.author,"\n", self.number_of_pages)
+    def __str__(self):
+        details = super().__str__()
+        template = """
+        {0}
+        Author: {1}
+        Pages: {2}
+        """
+        return template.format(details, self.author, self.number_of_pages)
 
 
 
 class Ebook(Book):
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, format):
-        super().__init__(id, name, price, amount, created_at, last_buy_at, author, number_of_pages)
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, format, pic):
+        super().__init__(id, name, price, amount, created_at, last_buy_at, author, number_of_pages, pic)
         self.format = format
         self.net_price = price - price * Book.vat
 
+    def __str__(self):
+        details = super().__str__()
+        template = """
+        {0}
+        Format: {1}
+        """
+        return template.format(details, self.format)
 
 class Db():
     def __init__(self, csv_file):
@@ -51,14 +72,16 @@ class Db():
                 if row["Typ"] == "Book":
                     object = Book(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
                                         created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
-                                        author=row["Autor"], number_of_pages=row["Ilość stron"])
-                    self.database.update({counter: object})
+                                        author=row["Autor"], number_of_pages=row["Ilość stron"], pic=row['Link do miniaturki'])
+                    self.database.update({counter : object})
                     counter += 1
                 elif row["Typ"] == "Ebook":
                     object = Ebook(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
                                          created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
-                                         author=row["Autor"], number_of_pages=row["Ilość stron"], format=row["Format"])
-                    self.database.update({counter: object})
+                                         author=row["Autor"], number_of_pages=row["Ilość stron"],
+                                   pic=row['Link do miniaturki'],
+                                   format=row["Format"])
+                    self.database.update({counter : object})
                     counter += 1
 
     def addItem(self, object, file):
@@ -92,6 +115,9 @@ class Db():
         """
         pass
 
+    def __str__(self):
+        return f"Utworzono: {self.database[1]}, {self.database[2], self.database[3]}"
+
 class Cart():
 
     def __init__(self):
@@ -109,9 +135,9 @@ class Cart():
     def __len__(self):
         return len(self.elements)
 
-    def cart_view(self):
-        self.elements = dict(self.elements)
-        return self.elements
+    def __str__(self):
+        template = """
+        """
 
     def net_worth(self):
         return self.net

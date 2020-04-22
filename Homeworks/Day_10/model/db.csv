@@ -1,4 +1,4 @@
-ID,Nazwa,Data dodania,Data ostatniego zakupu,Ilość,Typ,Autor,Ilość stron,Format
-1,Potop,2020-04-01,2020-04-01,34,Book,Henryk Sienkiewicz,300,
-2,Krzyżacy,2020-04-01,2020-04-01,34,Book,Henryk Sienkiewicz,400,
-3,Władca Pierścieni,2020-04-01,2020-04-01,unlimited,Ebook,J.R.R Tolkien,1000,epub
+ID,Nazwa,Data dodania,Data ostatniego zakupu,Ilość,Typ,Autor,Ilość stron,Link do miniaturki,Format
+1,Potop,2020-04-01,2020-04-01,34,Book,Henryk Sienkiewicz,300,https://ecsmedia.pl/c/potop-b-iext38864542.jpg
+2,Krzyżacy,2020-04-01,2020-04-01,34,Book,Henryk Sienkiewicz,400,https://ecsmedia.pl/c/krzyzacy-w-iext49960097.jpg
+3,Władca Pierścieni,2020-04-01,2020-04-01,unlimited,Ebook,J.R.R Tolkien,1000,https://image.ceneostatic.pl/data/products/18726692/i-wladca-pierscieni-tw.jpg,epub
