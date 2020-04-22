@@ -63,7 +63,7 @@ class Db():
         create book/ebook objects
         add to items as a dict of objects {id:item, id:item}
         """
-        self.database = {}
+        self.database = []
 
         with open(csv_file, "r+", encoding="utf-8", newline="") as file:
             reader = csv.DictReader(file)
@@ -73,7 +73,7 @@ class Db():
                     object = Book(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
                                         created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
                                         author=row["Autor"], number_of_pages=row["Ilość stron"], pic=row['Link do miniaturki'])
-                    self.database.update({counter : object})
+                    self.database.append(object)
                     counter += 1
                 elif row["Typ"] == "Ebook":
                     object = Ebook(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
@@ -81,7 +81,7 @@ class Db():
                                          author=row["Autor"], number_of_pages=row["Ilość stron"],
                                    pic=row['Link do miniaturki'],
                                    format=row["Format"])
-                    self.database.update({counter : object})
+                    self.database.append(object)
                     counter += 1
 
     def addItem(self, object, file):
@@ -90,33 +90,38 @@ class Db():
         :param Book/Ebook object - object of book/ebook?
         """
         counter = len(self.database) + 1
-        self.database.update({counter: object})
+        self.database.append(object)
         with open (file, "a+", newline="") as csv_file:
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerow(object)
+        return "Dodano do bazy"
 
     def getItems(self):
         """
         Function to get all items from db. Display a list of products
         """
-        pass
+        for object in self.database:
+            print(object)
+
 
     def removeItem(self, object):
         """
         Function to get remove item from DB
         :param int id - id of book?
         """
-        pass
+        if object in self.database:
+            self.database.remove(object)
+            return "Usunięto z bazy."
+        else:
+            return "Nie znaleziono w bazie."
 
-    def updateItem(self):
+    def updateItem(self, object):
         """
         Function to updete item in DB
         :param Book/Ebook object - object of book/ebook?
         """
         pass
 
-    def __str__(self):
-        return f"Utworzono: {self.database[1]}, {self.database[2], self.database[3]}"
 
 class Cart():
 

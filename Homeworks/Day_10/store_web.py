@@ -3,7 +3,9 @@ import Homeworks.Day_10.model.model as store
 
 baza = store.Db("model/db.csv")
 cart = store.Cart()
+print(baza.database[2])
 
+# baza.removeItem()
 app = flask.Flask(__name__)
 app.debug = True
 
@@ -14,7 +16,7 @@ def main():
 
 @app.route("/our-books")
 def our_books():
-    return flask.render_template("offer.html", store = baza)
+    return flask.render_template("offer.html", store = baza.database)
 
 @app.route("/<element>", methods = ["GET", "POST"])
 def add_to_cart(element):
