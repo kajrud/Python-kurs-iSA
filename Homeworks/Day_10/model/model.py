@@ -63,7 +63,7 @@ class Db():
         create book/ebook objects
         add to items as a dict of objects {id:item, id:item}
         """
-        self.database = []
+        self.database = {}
 
         with open(csv_file, "r+", encoding="utf-8", newline="") as file:
             reader = csv.DictReader(file)
@@ -73,7 +73,7 @@ class Db():
                     object = Book(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
                                         created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
                                         author=row["Autor"], number_of_pages=row["Ilość stron"], pic=row['Link do miniaturki'])
-                    self.database.append(object)
+                    self.database.update({counter:object})
                     counter += 1
                 elif row["Typ"] == "Ebook":
                     object = Ebook(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
@@ -81,7 +81,7 @@ class Db():
                                          author=row["Autor"], number_of_pages=row["Ilość stron"],
                                    pic=row['Link do miniaturki'],
                                    format=row["Format"])
-                    self.database.append(object)
+                    self.database.update({counter:object})
                     counter += 1
 
     def addItem(self, object, file):
