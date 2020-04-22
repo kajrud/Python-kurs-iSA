@@ -39,15 +39,15 @@
                 <tbody>
                 {% for book in store %}
                 <tr>
-                    <td>{{book[0]}}</td>
+                    <td>{{book.id}}</td>
                     <td><img width="100"
                              src="{{book[8]}}></td>
-                    <td>{{book[1]}}</td>
-                    <td>{book[6]}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{book.author}}</td>
                     <td>TYPE</td>
-                    <td>{{book[7]}}</td>
-                    <td>{{book[2]}}</td>
-                    <td><a href="{{book[8]}}
+                    <td>{{book.number_of_pages}}</td>
+                    <td>{{book.price}}</td>
+                    <td><a href="{{url_for"/<element>"}}
                            class="btn btn-outline-success">Add to cart</a></td>
                 </tr>
                 {% endfor %}
