@@ -25,11 +25,12 @@ class Book(Item):
 
     """
     vat = 0.05
-    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, pic):
+    def __init__(self, id, name, price, amount, created_at, last_buy_at, author, number_of_pages, pic, format = "Książka"):
         super().__init__(id, name, price, amount, created_at, last_buy_at, pic)
         self.author = author
         self.number_of_pages = number_of_pages
         self.net_price = price - price * Book.vat
+        self.format = format
 
     def __str__(self):
         details = super().__str__()
@@ -39,6 +40,10 @@ class Book(Item):
         Pages: {2}
         """
         return template.format(details, self.author, self.number_of_pages)
+
+    def __getitem__(self, key):
+        # print("Inside `__getitem__` method!")
+        return getattr(self, key)
 
 
 
@@ -63,7 +68,7 @@ class Db():
         create book/ebook objects
         add to items as a dict of objects {id:item, id:item}
         """
-        self.database = {}
+        self.database = []
 
         with open(csv_file, "r+", encoding="utf-8", newline="") as file:
             reader = csv.DictReader(file)
@@ -73,7 +78,7 @@ class Db():
                     object = Book(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
                                         created_at=row["Data dodania"], last_buy_at=row["Data ostatniego zakupu"],
                                         author=row["Autor"], number_of_pages=row["Ilość stron"], pic=row['Link do miniaturki'])
-                    self.database.update({counter:object})
+                    self.database.append(object)
                     counter += 1
                 elif row["Typ"] == "Ebook":
                     object = Ebook(id=row["ID"], name=row["Nazwa"], price=20, amount=row["Ilość"],
@@ -81,7 +86,7 @@ class Db():
                                          author=row["Autor"], number_of_pages=row["Ilość stron"],
                                    pic=row['Link do miniaturki'],
                                    format=row["Format"])
-                    self.database.update({counter:object})
+                    self.database.append(object)
                     counter += 1
 
     def addItem(self, object, file):
@@ -121,6 +126,9 @@ class Db():
         :param Book/Ebook object - object of book/ebook?
         """
         pass
+
+    def __len__(self):
+        return len(self.database)
 
 
 class Cart():

@@ -30,25 +30,25 @@
                     <th>Cover</th>
                     <th>Title</th>
                     <th>Author</th>
-                    <th>Type</th>
+                    <th>Format</th>
                     <th>Pages</th>
                     <th>Price</th>
                     <th>Add to cart</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for book in store %}
+                {% for item in store %}
                 <tr>
-                    <td>{{book.id}}</td>
+                    <td>{{store[loop.index0]["id"]}}</td>
                     <td><img width="100"
-                             src="{{book[8]}}></td>
-                    <td>{{book.title}}</td>
-                    <td>{book.author}}</td>
-                    <td>TYPE</td>
-                    <td>{{book.number_of_pages}}</td>
-                    <td>{{book.price}}</td>
-                    <td><a href="{{url_for"/<element>"}}
-                           class="btn btn-outline-success">Add to cart</a></td>
+                             src="{{store[loop.index0]['pic']}}"></td>
+                    <td>{{store[loop.index0]["name"]}}</td>
+                    <td>{{store[loop.index0]["author"]}}</td>
+                    <td>{{store[loop.index0]["format"]}}</td>
+                    <td>{{store[loop.index0]["number_of_pages"]}}</td>
+                    <td>{{store[loop.index0]["price"]}}</td>
+                    <td><button type="button" class="btn btn-dark" formaction="{{url_for('add_to_cart', element=item)}}">Add to cart</button></td>
+
                 </tr>
                 {% endfor %}
 
